@@ -1,37 +1,35 @@
 export const ShowTask = ({taskList, setTaskList, task, setTask}) => {
 
     const handleEdit = (id) => {
-        const selectedTask = taskList.find(task =>task.id === id);
+        const selectedTask = taskList.find(todo => todo.id === id);
         setTask(selectedTask);
-
     }
 
     const handleDelete = (id) => {
-        const updatedTaskList = taskList.filter(task => task.id !== id);
+        const updatedTaskList = taskList.filter(todo => todo.id !== id);
         setTaskList(updatedTaskList);
     }
-
 
     return (
         <section className="showTask">
             <div className="head">
                 <div>
                     <span className="title">Todo</span>
-                    <span className="count">{taskList.length}</span>
+                    <span className="count">0</span>
                 </div>
-                <button className="clearAll" onClick={() => setTaskList([])}>Clear All</button>
+                <button onClick={() => setTaskList([])} className="clearAll">Clear All</button>
             </div>
             <ul>
-                {taskList.map((task) => (
-                    <li key={task.id}>
+                { taskList.map((todo) => (
+                    <li key={todo.id}>
                         <p>
-                            <span className="name">{task.name}</span>
-                            <span className="time">{task.time}</span>
+                            <span className="name">{todo.name}</span>
+                            <span className="time">{todo.time}</span>
                         </p>
-                        <i onClick={() => handleEdit(task.id)} className="bi bi-pencil-square"></i>
-                        <i onClick={() => handleDelete(task.id)} className="bi bi-trash"></i>
+                        <i onClick={() => handleEdit(todo.id)} className="bi bi-pencil-square"></i>
+                        <i onClick={() => handleDelete(todo.id)} className="bi bi-trash"></i>
                     </li>
-                ))}
+                )) }
             </ul>
         </section>
     )
