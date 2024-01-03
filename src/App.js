@@ -1,11 +1,15 @@
 import './App.css';
 import {AddTask, Footer, Header, ShowTask} from "./components";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 
 function App() {
-    const [taskList, setTaskList] = useState([]);
+    const [taskList, setTaskList] = useState([JSON.parse(localStorage.getItem("taskList")) || []]);
     const [task, setTask] = useState({});
+
+    useEffect(() => {
+        localStorage.setItem("taskList", JSON.stringify(taskList));
+    }, [taskList])
     return (
         <div className="App">
             <Header/>
